@@ -19,7 +19,7 @@
   abbreviations: include "chapters/meta/wykaz-skrotow.typ",
   bibliography-path: path("bibliography.bib"),
 
-  appendicies: (
+  appendices: (
     include "chapters/dodatki/dodatek-a.typ",
   ),
 )

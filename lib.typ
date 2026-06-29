@@ -1,28 +1,5 @@
 // Makra
 #let ang(it) = [(ang.~#text(lang: "en", style: "italic", it))]
-/// Funkcja która przerabia wynik funkcji `terms()` na przezroczystą tabelę w celu wyrównania myśliników w jednej kolumnie
-#let wykaz-skrotow(x) = {
-  let items = if x.func() == terms.item {
-    (x,)
-  } else if x.has("children") and type(x.children) == array {
-    x.children
-  } else if x.func() == terms {
-    x.items
-  } else {
-    panic("Not a term list")
-  }
-
-  grid(columns: 5, row-gutter: 6pt + 1.5em, ..items
-      .filter(it => it.func() == terms.item)
-      .map(it => (
-        strong(it.term),
-        h(1em),
-        [--],
-        h(1em),
-        it.description,
-      ))
-      .flatten())
-}
 
 // Szablon
 #let praca-dyplomowa(
@@ -61,10 +38,10 @@
   bibliography-path: path("example/bibliography.bib"),
 
   /// lista bloków contentu które zostaną dołączone w tej kolejności na końcu dokumentu
-  /// zaleca się zaimportowanie ich pokolei przy pomocy dorektywy `include`, np. `appendicies: (include "a.typ", include "b.typ")`
+  /// zaleca się zaimportowanie ich pokolei przy pomocy dorektywy `include`, np. `appendices: (include "a.typ", include "b.typ")`
   /// nazwy "Dodatek A","Dodatek B" itd. są automatycznie dołączane do nagłówka.
   /// -> array
-  appendicies: (),
+  appendices: (),
 
   body,
 ) = {
@@ -265,9 +242,25 @@
 
   // Wykaz Skrótów
   [
+    // Konwersja na tabelke w celu wyrównania myślników w tabeli
+    #show terms: it => grid(
+      columns: 5,
+      row-gutter: 6pt + 1.5em,
+      ..it
+        .children
+        .map(it => (
+          strong(it.term),
+          h(1em),
+          [--],
+          h(1em),
+          it.description,
+        ))
+        .flatten()
+    )
+
     = Wykaz Ważniejszych Oznaczeń i Skrótów
 
-    #wykaz-skrotow(abbreviations)
+    #abbreviations
   ]
 
   // GŁÓWNA CZĘŚĆ PRACY
@@ -310,7 +303,7 @@
   )
 
   // Dodatki
-  for appendix in appendicies {
+  for appendix in appendices {
     if type(appendix) != content {
       panic("Dodatek nie jest typu 'content'")
     }
