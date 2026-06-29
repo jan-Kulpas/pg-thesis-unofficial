@@ -25,13 +25,13 @@
 }
 
 // Szablon
-#let pg-praca-dyplomowa(
+#let praca-dyplomowa(
   /// ścieżka do pliku pdf strony tytułowej
-  /// -> str
-  title-page-path: "",
+  /// path
+  title-page-path: path("example/assets/strona-tytulowa.pdf"),
   /// ścieżka do pliku pdf z oświadczeniem o samodzielnej pracy
-  /// -> str
-  disclaimer-page-path: "",
+  /// path
+  disclaimer-page-path: path("example/assets/oswiadczenie.pdf"),
 
   /// treść streszczenia w języku polskim
   /// -> content
@@ -54,11 +54,17 @@
 
   /// treść wykazu skrótów, zalecane jest użycie wbudowanego elementu listy definicji (term list) w typst
   /// -> content
-  abbrev: [],
+  abbreviations: [],
   /// ścieżka do pliku .bib z bibliografią,
   /// .yaml w formacie Hayagriva powinien też działać bez większych problemów, aczkolwiek nie było to testowane
-  /// -> str
-  bibliography-path: "",
+  /// -> path
+  bibliography-path: path("example/bibliography.bib"),
+
+  /// lista bloków contentu które zostaną dołączone w tej kolejności na końcu dokumentu
+  /// zaleca się zaimportowanie ich pokolei przy pomocy dorektywy `include`, np. `appendicies: (include "a.typ", include "b.typ")`
+  /// nazwy "Dodatek A","Dodatek B" itd. są automatycznie dołączane do nagłówka.
+  /// -> array
+  appendicies: (),
 
   body,
 ) = {
@@ -190,6 +196,9 @@
     marker: ([•], [--]),
     indent: 1.5em,
   )
+  set enum(
+    indent: 1.5em,
+  )
 
   set terms(
     separator: [
@@ -213,12 +222,12 @@
   // === KONIEC FORMATOWANIA ===
   // Tytuł i Oświadczenie
   page(margin: 0pt)[
-    #image("../" + title-page-path)
+    #image(title-page-path)
   ]
   pagebreak()
 
   page(margin: 0pt)[
-    #image("../" + disclaimer-page-path)
+    #image(disclaimer-page-path)
   ]
   pagebreak()
 
@@ -258,18 +267,19 @@
   [
     = Wykaz Ważniejszych Oznaczeń i Skrótów
 
-    #wykaz-skrotow(abbrev)
+    #wykaz-skrotow(abbreviations)
   ]
 
   // GŁÓWNA CZĘŚĆ PRACY
   {
+    pagebreak()
     set heading(numbering: "1.1.") // numerowanie tylko dla ciała pracy
     body
   }
 
   {
     bibliography(
-      "../" + bibliography-path,
+      bibliography-path,
       title: [Wykaz Literatury],
       style: "ieee",
     )
@@ -292,4 +302,20 @@
       target: figure.where(kind: table),
     )
   ]
+
+  // Reset numerowania nagłówków przez startem dodatków + zmiana formatowania
+  counter(heading).update(0)
+  show heading.where(level: 1): set heading(
+    numbering: (..n) => "Dodatek " + numbering("A", ..n) + ":",
+  )
+
+  // Dodatki
+  for appendix in appendicies {
+    if type(appendix) != content {
+      panic("Dodatek nie jest typu 'content'")
+    }
+
+    pagebreak(weak: true)
+    appendix
+  }
 }
