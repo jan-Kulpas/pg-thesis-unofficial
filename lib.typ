@@ -21,9 +21,10 @@
   oecd-pl: "",
 
   /// treść streszczenia w języku angielskim
-  /// -> str
+  /// -> content
   abstract-eng: [],
   /// słowa kluczowe w języku angielskim
+  /// -> str
   keywords-eng: "",
   /// dziedzina nauki i techniki, zgodnie z wymogami OECD w języku angielskim
   /// -> str
