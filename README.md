@@ -12,7 +12,7 @@ Nieoficjalny szablon Typst pracy inżynierskiej/magisterskiej na Politechnice Gd
 
 `main.typ`:
 ```typst
-// po opublikowaniu należy używać zakomentowanej linijki
+// po opublikowaniu należy używać zakomentowanej linijki:
 // #import "@preview/pg-thesis-unofficial:0.1.0" as pg
 #import "lib.typ" as pg
 
@@ -35,6 +35,8 @@ Nieoficjalny szablon Typst pracy inżynierskiej/magisterskiej na Politechnice Gd
     include "chapters/dodatki/dodatek-a.typ",
   ),
 )
+
+Tutaj można już pisać reszte pracy lub zaimportować treść rodziałów z innego pliku.
 ```
 
 kompilacja w wierszu poleceń:
