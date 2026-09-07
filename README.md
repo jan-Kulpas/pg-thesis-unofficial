@@ -6,15 +6,17 @@ Nieoficjalny szablon Typst pracy inżynierskiej/magisterskiej na Politechnice Gd
 
 ### `typst init` w wierszu poleceń
 
-(wip, wymaga opublikowania paczki)
+```bash
+typst init @preview/pg-thesis-unofficial:0.1.0
+```
+
+W folderze w którym uruchomiono komendę zostanie utworzony folder z nowym projektem będącym kopią [folderu `example`](./example/). Projekt ten zawiera wystarczająco dużo przykładów jak pracować z *Typst*, by samodzielnie kontunować w nim pisanie pracy inżynierskiej/magisterskiej. 
 
 ### Manualny import
 
 `main.typ`:
 ```typst
-// po opublikowaniu należy używać zakomentowanej linijki:
-// #import "@preview/pg-thesis-unofficial:0.1.0" as pg
-#import "lib.typ" as pg
+#import "@preview/pg-thesis-unofficial:0.1.0" as pg
 
 #show: pg.praca-dyplomowa.with(
   title-page-path: path("./assets/strona-tytulowa.pdf"),
@@ -50,7 +52,7 @@ typst watch "main.typ"
 ```
 ### Edytor Typst online
 
-(wip, wymaga opublikowania paczki, ale można po prostu pobrać pliki z tego repozytorium i wkleić tam)
+Po założeniu konta na [typst.app](https://typst.app/), w głównym dashboardzie należy wybrać przycisk *"Start from template"*, po czym wyszukać nazwę `pg-thesis-unofficial`. Zostanie utworzony nowy projekt będący kopią [folderu `example`](./example/).
 
 ## Parametry funckji `praca-dyplomowa`
 
@@ -70,5 +72,5 @@ typst watch "main.typ"
 
 ## Przykład
 
- - [`example/main.typ`](https://github.com/jan-Kulpas/pg-thesis-unofficial/blob/master/example/main.typ) - przykładowe użycie szablonu, rozdziały i dodatki znajdują się w folderze `chapters`
+ - [`example/main.typ`](./example/main.typ) - przykładowe użycie szablonu, rozdziały i dodatki znajdują się w folderze `chapters`
 

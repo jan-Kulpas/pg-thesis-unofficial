@@ -20,4 +20,4 @@ disciplines = ["computer-science", "engineering"]
 [template]
 path = "example"
 entrypoint = "main.typ"
-thumbnail = "thumbnail.png" #TODO: get an actual thumbnail
+thumbnail = "thumbnail.png"

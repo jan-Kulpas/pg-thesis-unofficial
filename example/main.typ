@@ -1,4 +1,4 @@
-#import "@local/pg-thesis-unofficial:0.1.0" as pg
+#import "@preview/pg-thesis-unofficial:0.1.0" as pg
 
 // dla plików pdf i bibliografii podawana jest ścieżka do pliku, ponieważ są one podawane dalej w szablonie do wbudowanych funkcji typst (np. `image()`)
 // streszczenia i wykaz skrótów są parsowane as-is i w wyniku tego jest zwracany blok tekstu typu `content`, dlatego używamy dyrektywy `include`
