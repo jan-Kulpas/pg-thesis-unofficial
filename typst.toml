@@ -16,7 +16,7 @@ keywords = [
 ]
 categories = ["thesis"]
 disciplines = ["computer-science", "engineering"]
-exclude = ["/example/main.pdf"]
+exclude = ["/example/main.pdf", "/images/"]
 
 [template]
 path = "example"

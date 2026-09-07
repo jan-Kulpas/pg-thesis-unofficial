@@ -39,7 +39,7 @@ Typy dokumentów można sklasyfikować w~sposób przedstawiony na~rysunku @fig:d
   scale(
     88%,
     reflow: true,
-  )[#include "../assets/images/doc-formats-pl.typ"],
+  )[#image("../assets/images/doc-formats-pl.svg")],
   caption: [Klasyfikacja typów dokumentów],
 )<fig:docFormatsPL>
 

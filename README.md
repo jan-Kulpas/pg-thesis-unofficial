@@ -1,5 +1,7 @@
 # pg-thesis-unofficial
 
+[![Napisane przez człowieka, nie przez AI](./images/Written-By-a-Human-Not-By-AI-Badge-white.svg)](https://notbyai.fyi/)
+
 Nieoficjalny szablon Typst pracy inżynierskiej/magisterskiej na Politechnice Gdańskiej, stworzony w celu zapewnienia alternatywy dla LaTeXa i Overleafa przy pisaniu pracy.
 
 ## Sposób użycia
